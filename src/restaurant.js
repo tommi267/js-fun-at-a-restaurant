@@ -20,17 +20,23 @@ function addMenuItem(restaurant,food){
 }
 
 function removeMenuItem(restaurant,food,type){
+  var foodNotFound = 0
   for (var i = 0; i < restaurant.menus[type].length; i++) {
     if(restaurant.menus[type][i].name === food){
       restaurant.menus[type].splice(i,1)
-      var result = `No one is eating our ${food} - it has been removed from the ${type} menu!`
-      return result
-    }else {
-      var error = `Sorry we don't sell ${food}, try adding a new recipe!`;
-      return error;
+      foodNotFound ++
+
     }
-    }
+  }if (foodNotFound < 1){
+    var error = `Sorry, we don't sell ${food}, try adding a new recipe!`;
+    return error;
+  }else {
+    var result = `No one is eating our ${food} - it has been removed from the ${type} menu!`
+    return result
+  }
+
 }
+
 
 
 
